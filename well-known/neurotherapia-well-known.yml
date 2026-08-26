@@ -1,0 +1,50 @@
+generated: '2026-08-26'
+method: probed
+source: live GET probes against the NeuroTherapia corporate host
+hit_count: 0
+summary: 'No /.well-known/ document is served. The host is Wix-fronted behind Cloudflare and answers every
+  /.well-known/* path with HTTP 400 and a 2,202-byte HTML error page — a hard reject, not a catch-all 200,
+  so there is no soft-404 false-positive risk here. Because nothing was fetched and nothing was saved, NO
+  WellKnown and NO SecurityTxt pointer is emitted in apis.yml.'
+hosts:
+- host: https://www.neurotherapia.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 400
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 400
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 400
+    file: null
+  - path: /.well-known/api-catalog
+    status: 400
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 400
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 400
+    file: null
+  - path: /.well-known/agent.json
+    status: 400
+    file: null
+  - path: /.well-known/mcp.json
+    status: 400
+    file: null
+related_surfaces:
+- path: /llms.txt
+  status: 200
+  note: 'Not a /.well-known/ document, but a real machine-readable discovery file served from the same
+    host. Saved verbatim to llms/neurotherapia-llms.txt and pointed at by type LLMsTxt.'
+- path: /robots.txt
+  status: 200
+  note: 'User-agent * Allow /. Only *?lightbox= is disallowed; PetalBot is blocked. Crawling this host is
+    permitted, so nothing in this profile was blocked by robots policy.'
+- path: /sitemap.xml
+  status: 200
+  note: Wix-generated sitemap index; 23 pages in pages-sitemap.xml, blog sitemap last modified 2020-07-06.

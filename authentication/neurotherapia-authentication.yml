@@ -1,0 +1,44 @@
+generated: '2026-08-26'
+method: probed
+source: https://www.neurotherapia.com/_api/mcp
+note: '0-working/derive-authentication.py returned no profile because this provider publishes no OpenAPI
+  or Swagger document. This profile is transcribed instead from a live, unauthenticated probe of the only
+  machine-readable surface the company serves — the Wix-provisioned site MCP endpoint on its own host —
+  and from the tool inputSchemas saved verbatim at mcp/neurotherapia-mcp-tools.json.'
+summary:
+  types: [none, bearer-visitor-token]
+  api_key_in: []
+  oauth2_flows: []
+  anonymous_connect: true
+  registration_required: false
+schemes:
+- name: anonymous
+  type: none
+  applies_to: MCP transport, tools/list, GetBusinessDetails, SearchInSite, SearchSiteApiDocs,
+    BrowseWixRESTDocsMenu, ReadFullDocsArticle, ReadFullDocsMethodSchema
+  evidence: 'POST tools/list with no Authorization header returned HTTP 200 and the full nine-tool list
+    on 2026-08-26. The provider''s own llms.txt states "No authentication required to connect to the MCP
+    endpoint".'
+  sources: [https://www.neurotherapia.com/_api/mcp, https://www.neurotherapia.com/llms.txt]
+- name: visitorToken
+  type: bearer
+  scheme: opaque-session-token
+  in: tool-argument
+  parameter: visitorToken
+  applies_to: CallWixSiteAPI, ExecuteWixAPI
+  minted_by: GenerateVisitorToken
+  evidence: 'Both write-capable tools declare visitorToken in their required[] inputSchema; the
+    GenerateVisitorToken tool description states it must be called first to obtain the token. The token
+    is issued anonymously — no account, key or consent step is involved.'
+  sources: [mcp/neurotherapia-mcp-tools.json]
+oauth2:
+  present: false
+  evidence: '/.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource both
+    returned HTTP 400 on 2026-08-26; the MCP endpoint issued no OAuth challenge on an anonymous
+    tools/list.'
+absent:
+- api_keys
+- oauth2
+- openid_connect
+- mutual_tls
+- signed_requests

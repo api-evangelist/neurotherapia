@@ -1,0 +1,22 @@
+generated: '2026-08-26'
+method: probed
+source: https://www.neurotherapia.com/_api/mcp
+limit_count: 0
+note: 'NeuroTherapia publishes no rate-limit documentation, because it publishes no developer program. A
+  live POST to the site MCP endpoint on 2026-08-26 returned HTTP 200 carrying no RateLimit-*, no
+  X-RateLimit-*, and no Retry-After header — the response headers were date, content-type,
+  mcp-session-id, etag, pragma, cache-control, x-wix-request-id, set-cookie, x-robots-tag, server,
+  x-content-type-options, strict-transport-security and Cloudflare/Fastly cache headers. Any limits that
+  exist are enforced upstream by Wix and Cloudflare and are neither published nor signalled to the client,
+  so an agent has no runtime backoff signal to read.'
+limits: []
+headers:
+  observed: []
+  documented: []
+exhaustion_status_code: null
+evidence:
+- url: https://www.neurotherapia.com/_api/mcp
+  method: POST
+  http_status: 200
+  rate_limit_headers_present: false
+  checked: '2026-08-26'

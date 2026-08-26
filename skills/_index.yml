@@ -1,0 +1,13 @@
+generated: '2026-08-26'
+method: generated
+source: mcp/neurotherapia-mcp-tools.json
+note: 'Grounded entirely in the nine tool names and inputSchemas returned by a live tools/list probe of
+  https://www.neurotherapia.com/_api/mcp on 2026-08-26, saved verbatim at mcp/neurotherapia-mcp-tools.json.
+  No operation named in this skill was invented. NeuroTherapia publishes no OpenAPI, so the MCP tool set
+  is the only real operation surface available to ground a skill in.'
+skills:
+- file: neurotherapia-query-site-content.md
+  name: Query NeuroTherapia public site content over MCP
+  api: mcp/neurotherapia-mcp.yml
+  endpoint: https://www.neurotherapia.com/_api/mcp
+  operations: [GetBusinessDetails, SearchInSite, SearchSiteApiDocs, GenerateVisitorToken, CallWixSiteAPI]

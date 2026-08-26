@@ -1,0 +1,73 @@
+generated: '2026-08-26'
+method: derived
+source: mcp/neurotherapia-mcp-tools.json + https://www.neurotherapia.com/llms.txt
+scope: 'Applies to the single machine-readable surface this company serves — the Wix-provisioned site MCP
+  endpoint at https://www.neurotherapia.com/_api/mcp. NeuroTherapia publishes no REST API, no OpenAPI and
+  no developer documentation of its own, so there is no provider-authored convention set to capture. Every
+  field below is either observed on the live endpoint or absent, and absence is recorded as absent.'
+protocol:
+  style: JSON-RPC 2.0 over HTTP POST
+  content_type: application/json
+  accept: application/json, text/event-stream
+  session: 'Server returns an mcp-session-id response header (observed 2026-08-26).'
+authentication:
+  style: anonymous to connect; opaque visitor token for write-capable tools
+  detail: authentication/neurotherapia-authentication.yml
+idempotency:
+  supported: false
+  evidence: 'No idempotency key header or tool argument appears in any of the nine tool inputSchemas, and
+    the provider publishes no idempotency guidance. NO Idempotency pointer is emitted in apis.yml.'
+pagination:
+  supported: unknown
+  evidence: 'Not expressed at the MCP layer. Any pagination belongs to the underlying Wix REST methods
+    reached through CallWixSiteAPI, which are documented by Wix, not by NeuroTherapia.'
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  supported: true
+  header: x-wix-request-id
+  evidence: 'Observed on every response from the endpoint on 2026-08-26. Platform-issued, not documented
+    by NeuroTherapia.'
+versioning:
+  scheme: none-published
+  evidence: 'No version is expressed in the endpoint path, a header, or the llms.txt. The MCP tool set is
+    versioned by the Wix platform; the llms.txt advises clients to re-issue tools/list on a tool-update
+    notification, which is the only change signal offered.'
+error_envelope:
+  format: JSON-RPC 2.0 error object
+  rfc9457: false
+  catalog: null
+  evidence: 'No error reference is published. No 4xx/5xx catalog could be derived because there is no
+    OpenAPI; errors/ is therefore intentionally absent rather than fabricated.'
+rate_limit_signaling:
+  headers_observed: []
+  detail: rate-limits/neurotherapia-rate-limits.yml
+reversibility:
+  grade: undocumented
+  applicable: true
+  write_surface_present: true
+  write_surface:
+  - tool: CallWixSiteAPI
+    note: 'Accepts an arbitrary HTTP method against a Wix site API URL on a visitor''s behalf, so DELETE
+      and POST mutations are reachable.'
+  - tool: ExecuteWixAPI
+    note: 'Runs sandboxed JavaScript against the Wix REST API and requires the caller to declare a
+      hasMutations boolean — an intent declaration, NOT a dry-run mode and NOT a reversal path.'
+  reversal_operations: []
+  windows: []
+  evidence: 'No cancel, refund, void, reverse, undo, rollback or restore operation is exposed by any of
+    the nine tools, and neither NeuroTherapia nor its llms.txt states any reversal window. The surface is
+    therefore graded undocumented rather than verified. NO window is asserted here because none is
+    published — inventing one would be the single most costly error available in this artifact.'
+  caveat: 'The reachable mutations belong to the Wix site platform (blog/content/booking objects), not to
+    any NeuroTherapia clinical or therapeutics system.'
+dry_run_mode:
+  supported: false
+  evidence: 'hasMutations on ExecuteWixAPI declares intent to the server; it does not rehearse the call.'
+cross_links:
+  authentication: authentication/neurotherapia-authentication.yml
+  rate_limits: rate-limits/neurotherapia-rate-limits.yml
+  mcp: mcp/neurotherapia-mcp.yml
+  conformance: conformance/neurotherapia-conformance.yml

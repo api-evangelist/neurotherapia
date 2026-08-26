@@ -1,0 +1,19 @@
+generated: '2026-08-26'
+method: searched
+source: https://www.neurotherapia.com/
+plan_count: 0
+note: 'NeuroTherapia is a clinical-stage therapeutics developer, not a software vendor. It sells no API,
+  publishes no pricing page and offers no plans, tiers, quotas or overages. The 23 pages in its sitemap
+  cover the pipeline, leadership, board, research, investors, press and policy — none is a pricing or
+  sign-up surface. The one machine-readable surface it serves, the Wix-provisioned site MCP endpoint, is
+  anonymous and free to call; its cost sits inside the company''s website subscription, not in any
+  customer-facing plan. plan_count is 0 as a measured fact, not as a gap in this profile.'
+plans: []
+evidence:
+- url: https://www.neurotherapia.com/sitemap.xml
+  status: 200
+  finding: no pricing, plans, signup or developer page among the 23 published pages
+- url: https://www.neurotherapia.com/_api/mcp
+  status: 200
+  finding: anonymous access, no billing or entitlement layer
+  checked: '2026-08-26'

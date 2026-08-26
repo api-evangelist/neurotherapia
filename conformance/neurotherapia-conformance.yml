@@ -1,0 +1,74 @@
+generated: '2026-08-26'
+method: probed
+source: https://www.neurotherapia.com/_api/mcp + https://www.neurotherapia.com/llms.txt
+scope: 'Assessed against the only machine-readable surface the company serves. There is no OpenAPI,
+  GraphQL, AsyncAPI, gRPC or WSDL contract to assess, so every entry below is grounded in a live probe or
+  recorded as a measured absence.'
+standards:
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} to https://www.neurotherapia.com/_api/mcp
+    returned HTTP 200 with a well-formed JSON-RPC 2.0 result containing nine tools, each with a name,
+    description and inputSchema. An mcp-session-id header was returned. Probed 2026-08-26.'
+- id: jsonrpc-2.0
+  name: JSON-RPC 2.0
+  conforms: true
+  evidence: response carried jsonrpc "2.0", the echoed request id, and a result member
+- id: llms-txt
+  name: llms.txt
+  conforms: true
+  evidence: 'https://www.neurotherapia.com/llms.txt returns HTTP 200, text/plain, in llms.txt shape — H1
+    title, blockquote summary, then H2 link and tool sections. Saved verbatim to
+    llms/neurotherapia-llms.txt.'
+- id: oauth2
+  conforms: false
+  evidence: no OAuth challenge on anonymous access; /.well-known/oauth-authorization-server returned 400
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 400
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors are JSON-RPC error objects; no application/problem+json surface exists
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returned 400
+- id: rfc8615-well-known
+  conforms: false
+  evidence: every /.well-known/ path probed returned 400; see well-known/neurotherapia-well-known.yml
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json both returned 400; no card is served
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key in any tool inputSchema; see conventions/neurotherapia-conventions.yml
+- id: rfc8594-sunset
+  conforms: false
+  evidence: no deprecation or sunset policy is published
+domain_standards:
+  sector: Biotechnology / Pharmaceuticals / Clinical research
+  assessed:
+  - id: hl7-fhir
+    conforms: false
+  - id: cdisc-sdtm
+    conforms: false
+  - id: cdisc-odm
+    conforms: false
+  - id: ich-e2b
+    conforms: false
+  - id: iso-idmp
+    conforms: false
+  - id: hl7-spl
+    conforms: false
+  finding: 'No domain standard signature is declared anywhere, because there is no contract in which to
+    declare one. NeuroTherapia is a pre-commercial drug developer with eight employees; its clinical data
+    standards obligations (CDISC, ICH E2B, IDMP) are discharged through its CRO and regulatory filings,
+    not through a public API. This is a REWARD-ONLY dimension and no conformance is invented to fill it —
+    the honest reading is that this company has no public contract surface in its market''s standards.'
+compliance:
+  published_program: false
+  certifications: []
+  evidence: 'probe-security-programs.py found no trust center and no vulnerability-disclosure program
+    (vdp=none trust=none, 2026-08-26). No SOC 2, ISO 27001, HIPAA, GDPR or FedRAMP posture is published.
+    NO Compliance pointer is emitted in apis.yml.'

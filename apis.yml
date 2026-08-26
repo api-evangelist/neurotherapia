@@ -1,23 +1,102 @@
 aid: neurotherapia
 name: NeuroTherapia
-description: 'NeuroTherapia is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'NeuroTherapia, Inc. is a clinical-stage, privately held biotechnology company spun out of the Cleveland Clinic in 2015 by physician-scientists Mohamed Naguib and Joseph Foss. Headquartered in Gates Mills, Ohio, it develops oral small-molecule drugs targeting neuroinflammatory conditions of the central nervous system, including Alzheimer''s disease, Parkinson''s disease, ALS and neuropathic pain. Its lead candidate NTRX-07 is an orally available selective cannabinoid type 2 (CB2) receptor agonist that restores normal microglial function, reducing neuroinflammation and amyloid-beta levels while improving synaptic plasticity, learning and memory in preclinical models; the company has completed a Phase 2a trial in Alzheimer''s patients and holds EMA approval for a Phase 2 trial. NeuroTherapia is a therapeutics developer, not a software or API vendor: it publishes no developer program, no product API and no SDKs. Its only machine-readable surface is the Wix-platform site MCP server and llms.txt it serves from its own corporate domain.'
+image: https://static.wixstatic.com/media/f2ff6e_19fb09e81a294b0ea0376a869b29bf0a~mv2.png
 url: https://raw.githubusercontent.com/api-evangelist/neurotherapia/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
+- Biotechnology
+- Pharmaceuticals
+- Life Sciences
+- Health
+- Clinical Trials
+- Neuroscience
+- Drug Discovery
+- Alzheimers Disease
 - Company
-apis: []
+apis:
+- name: NeuroTherapia Site MCP
+  description: 'A remote, anonymous Model Context Protocol server served from the NeuroTherapia corporate
+    domain at /_api/mcp. It is provisioned by the Wix website platform rather than authored by NeuroTherapia,
+    and exposes nine generic site tools (business details, site search, site API docs search, visitor-token
+    minting, and Wix REST API call/execute) over the company''s public website content. It is not a
+    NeuroTherapia product or therapeutics-data API. Probed live 2026-08-26: tools/list returned HTTP 200
+    with nine tools and real inputSchemas, no authentication required to connect.'
+  humanURL: https://www.neurotherapia.com/llms.txt
+  baseURL: https://www.neurotherapia.com/_api/mcp
+  tags:
+  - MCP
+  - Agents
+  - Website
+  properties:
+  - type: MCPServer
+    url: mcp/neurotherapia-mcp.yml
+  - type: Authentication
+    url: authentication/neurotherapia-authentication.yml
+  - type: Conventions
+    url: conventions/neurotherapia-conventions.yml
+  - type: RateLimits
+    url: rate-limits/neurotherapia-rate-limits.yml
+  - type: Plans
+    url: plans/neurotherapia-plans-pricing.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/neurotherapia-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.neurotherapia.com/
+- type: Support
+  url: https://www.neurotherapia.com/contact
+- type: Blog
+  url: https://www.neurotherapia.com/company-news
+- type: BlogRSS
+  url: https://www.neurotherapia.com/blog-feed.xml
+- type: TermsOfService
+  url: https://www.neurotherapia.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.neurotherapia.com/privacy
+- type: LLMsTxt
+  url: llms/neurotherapia-llms.txt
+- type: MCPServer
+  url: mcp/neurotherapia-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/neurotherapia-authentication.yml
+- type: Conventions
+  url: conventions/neurotherapia-conventions.yml
+- type: Conformance
+  url: conformance/neurotherapia-conformance.yml
+- type: Plans
+  url: plans/neurotherapia-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/neurotherapia-rate-limits.yml
+x-enrichment:
+  date: '2026-08-26'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: contract-surface-found
+  detail: 'NeuroTherapia is a clinical-stage drug developer with no product API, but STEP 0b contract
+    discovery found two real machine-readable surfaces served from its own domain: a live, anonymous MCP
+    server at https://www.neurotherapia.com/_api/mcp (tools/list returned HTTP 200 with nine tools and
+    real inputSchemas) and an llms.txt at HTTP 200, both provisioned by the Wix website platform rather
+    than authored by the company.'
+  evidence:
+  - url: https://www.neurotherapia.com/_api/mcp
+    status: 200
+  - url: https://www.neurotherapia.com/llms.txt
+    status: 200
+  - url: https://www.neurotherapia.com/.well-known/agent-card.json
+    status: 400
+  checked: '2026-08-26'
