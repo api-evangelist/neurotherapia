@@ -1,6 +1,17 @@
 aid: neurotherapia
 name: NeuroTherapia
 description: 'NeuroTherapia, Inc. is a clinical-stage, privately held biotechnology company spun out of the Cleveland Clinic in 2015 by physician-scientists Mohamed Naguib and Joseph Foss. Headquartered in Gates Mills, Ohio, it develops oral small-molecule drugs targeting neuroinflammatory conditions of the central nervous system, including Alzheimer''s disease, Parkinson''s disease, ALS and neuropathic pain. Its lead candidate NTRX-07 is an orally available selective cannabinoid type 2 (CB2) receptor agonist that restores normal microglial function, reducing neuroinflammation and amyloid-beta levels while improving synaptic plasticity, learning and memory in preclinical models; the company has completed a Phase 2a trial in Alzheimer''s patients and holds EMA approval for a Phase 2 trial. NeuroTherapia is a therapeutics developer, not a software or API vendor: it publishes no developer program, no product API and no SDKs. Its only machine-readable surface is the Wix-platform site MCP server and llms.txt it serves from its own corporate domain.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://static.wixstatic.com/media/f2ff6e_19fb09e81a294b0ea0376a869b29bf0a~mv2.png
 url: https://raw.githubusercontent.com/api-evangelist/neurotherapia/refs/heads/main/apis.yml
 x-type: company
