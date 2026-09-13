@@ -4,23 +4,27 @@ source: https://www.neurotherapia.com/_api/mcp
 status: published
 discovery:
   advertised_in: https://www.neurotherapia.com/llms.txt
-  note: 'The llms.txt served from the company''s own host advertises the endpoint under an "AI Agent
-    Access" heading and links the Wix site-MCP documentation at
-    https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp'
+  note: The llms.txt served from the company's own host advertises the endpoint under an "AI Agent Access"
+    heading and links the Wix site-MCP documentation at https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
 deployment:
   mode: remote
   endpoint: https://www.neurotherapia.com/_api/mcp
   auth: none
   verified: probed
+  probe_prior: (never probed)
+  probe: live
+  probe_why: live
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 provenance:
   first_party: false
   platform: Wix
-  note: 'This MCP server is provisioned by the Wix website platform for every site it hosts, not authored
-    by NeuroTherapia. It is served from a host NeuroTherapia controls (www.neurotherapia.com) and the tool
-    descriptions returned by the live server name the site "NeuroTherapia, Inc.", so the surface is
-    genuinely reachable at the company''s domain — but it exposes public website content and generic Wix
-    platform operations, NOT a NeuroTherapia therapeutics, pipeline or clinical-trial API. NeuroTherapia
-    publishes no product API of its own.'
+  note: This MCP server is provisioned by the Wix website platform for every site it hosts, not authored
+    by NeuroTherapia. It is served from a host NeuroTherapia controls (www.neurotherapia.com) and the
+    tool descriptions returned by the live server name the site "NeuroTherapia, Inc.", so the surface
+    is genuinely reachable at the company's domain — but it exposes public website content and generic
+    Wix platform operations, NOT a NeuroTherapia therapeutics, pipeline or clinical-trial API. NeuroTherapia
+    publishes no product API of its own.
 server:
   name: NeuroTherapia, Inc.
   transport: http
@@ -42,37 +46,67 @@ tools:
   parameters: []
 - name: SearchInSite
   description: Searches the NeuroTherapia site for information.
-  parameters: [searchTerm]
-  required: [searchTerm]
+  parameters:
+  - searchTerm
+  required:
+  - searchTerm
 - name: SearchSiteApiDocs
   description: Searches the API documentation for the Wix business solutions installed on this site and
     explains how to call them.
-  parameters: [searchTerm]
-  required: [searchTerm]
+  parameters:
+  - searchTerm
+  required:
+  - searchTerm
 - name: GenerateVisitorToken
   description: Creates a visitor session and returns a visitor access token. Must be called before any
     CallWixSiteAPI or ExecuteWixAPI request.
   parameters: []
 - name: CallWixSiteAPI
   description: Calls an API method on the site on a visitor's behalf.
-  parameters: [visitorToken, url, method, body]
-  required: [visitorToken, url, method]
+  parameters:
+  - visitorToken
+  - url
+  - method
+  - body
+  required:
+  - visitorToken
+  - url
+  - method
 - name: ExecuteWixAPI
   description: Runs JavaScript against the Wix REST API on the site, on the visitor's behalf, in a sandbox.
-  parameters: [code, reason, hasMutations, sourceDocUrls, visitorToken]
-  required: [code, reason, hasMutations, sourceDocUrls, visitorToken]
+  parameters:
+  - code
+  - reason
+  - hasMutations
+  - sourceDocUrls
+  - visitorToken
+  required:
+  - code
+  - reason
+  - hasMutations
+  - sourceDocUrls
+  - visitorToken
 - name: BrowseWixRESTDocsMenu
   description: Browses the Wix REST API documentation menu hierarchy to discover APIs.
-  parameters: [menuUrl, reason]
-  required: [reason]
+  parameters:
+  - menuUrl
+  - reason
+  required:
+  - reason
 - name: ReadFullDocsArticle
   description: Fetches a complete article from the Wix developer documentation portal.
-  parameters: [articleUrl]
-  required: [articleUrl]
+  parameters:
+  - articleUrl
+  required:
+  - articleUrl
 - name: ReadFullDocsMethodSchema
   description: Fetches the full request/response schema for a Wix API method.
-  parameters: [articleUrl, reason]
-  required: [articleUrl, reason]
+  parameters:
+  - articleUrl
+  - reason
+  required:
+  - articleUrl
+  - reason
 site_capabilities:
 - 'Blog App: list and query blog posts (reported by GetBusinessDetails on 2026-08-26)'
 notes:
