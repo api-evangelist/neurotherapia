@@ -66,6 +66,10 @@ apis:
   tags:
   - MCP
   - Agents
+  - Websites
+  tags_raw:
+  - MCP
+  - Agents
   - Website
   properties:
   - type: MCPServer
