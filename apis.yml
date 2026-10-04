@@ -82,6 +82,9 @@ apis:
     url: rate-limits/neurotherapia-rate-limits.yml
   - type: Plans
     url: plans/neurotherapia-plans-pricing.yml
+  x-surface: platform-generated
+  x-platform: wix
+  x-platform-surface: site-mcp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
